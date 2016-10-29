@@ -42,8 +42,15 @@
            background:#000;
            color:#fff;
        }
+        #content div{
+            display:none;
+        }
+        #content .selected{
+            display:block;
+        }
     </style>
 </head>
+    <body>
 <div id="container">
 <ul id="menu">
     <li class="selected">js</li>
@@ -51,27 +58,31 @@
     <li>css</li>
 </ul>
 <div id="content">
-    11111111
-  </div>
+    <div class="selected">11111111</div>
+    <div>22222222</div>
+    <div>33333333</div>
+    </div>
 </div>
     <script>
-        var arr = [11111111,22222222,33333333];
-        var oMenu=document.getElementById('menu');
-        var aLi=oMenu.getElementsByTagName('li');
+
+        var oMenu = document.getElementById('menu');
+        var aLi = oMenu.getElementsByTagName('li');
         var oContent = document.getElementById('content');
-        var last=0;
-        for(var i= 0;i<aLi.length;i++)
-        {
+        var aDiv = oContent.getElementsByTagName('div');
+        for(var i = 0;i<aLi.length;i++) {
             aLi[i].index = i;
             aLi[i].onclick = function () {
-                aLi[last].className = '';
+                for(var i=0;i<aLi.length;i++){
+                    aLi[i].className = '';
+                    aDiv[i].className='';
+                }
                 this.className = 'selected';
-                last = this.index;
-                oContent.innerHTML = arr[this.index];
-
+                aDiv[this.index].className='selected';
+            };
+            aLi[i].onselectstart=function(){
+                return false;
             };
         }
     </script>
-
 </body>
 </html>
