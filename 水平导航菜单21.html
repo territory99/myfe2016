@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>水平导航菜单</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul,ol{
+            list-style: none;
+        }
+        a{
+            text-decoration:none;
+        }
+        #main li{
+            float:left;
+            margin:5px;
+        }
+        #main .main-menu{
+            background: #ccc;
+            height:100px;
+            width:300px;
+            line-height:100px;
+            display:block;
+
+        }
+        #main .sub-main{
+            background:#eee;
+            display:none;
+            width:300px;
+        }
+        #main .sub-main li{
+            float:none;
+            height: 25px;
+            line-height: 25;
+            border-bottom: 1px dotted #000;
+
+        }
+    </style>
+</head>
+<body>
+    <ul id="main">
+        <li><a href="#" class="main-menu">link1</a>
+        <ul class="sub-main">
+            <li><a href="#">sublink1</a></li>
+            <li><a href="#">sublink2</a></li>
+            <li><a href="#">sublink3</a></li>
+        </ul>
+        </li>
+        <li><a href="#" class="main-menu">link2</a>
+        <ul class="sub-main">
+            <li><a href="#">sublink1</a></li>
+            <li><a href="#">sublink2</a></li>
+            <li><a href="#">sublink3</a></li>
+        </ul>
+        </li>
+        <li><a href="#" class="main-menu">link3</a>
+        <ul class="sub-main">
+            <li><a href="#">sublink1</a></li>
+            <li><a href="#">sublink2</a></li>
+            <li><a href="#">sublink3</a></li>
+        </ul>
+        </li>
+    </ul>
+    <script>
+        var oMenu = document.getElementById('menu');
+        var aLi = oMenu.children;
+        for( var i=0; i< aLi.length;i++){
+            aLi[i].onmouseover = function(){
+                this.getElementsByTagName(ul)[0].style.display='block';
+            };
+            aLi[i].onmouseout = function(){
+                this.children[1].sytle.display='none';
+            };
+        }
+    </script>
+</body>
+</html>
