@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>旋转的立方体</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body {
+            background: #ff3bd0;
+            perspective: 1000px;
+            /*perspective-origin:50% 50% ;*/
+        }
+        .cube{
+            width:200px;
+            height:200px;
+            background:green;
+            opacity: 0.6;
+            filter:alpha(opacity=60);
+            font-size: 60px;
+            text-align: center;
+            line-height: 200px;
+            border-radius:10px;
+            border:10px solid #00f;
+            position: absolute;
+            color: red;
+        }
+        #container{
+            width:200px;
+            height: 200px;
+            transform-style: preserve-3d ;
+            margin:200px auto;
+            animation: rotate 2s linear infinite;
+        }
+        /*.pic{
+            width:500px;
+            height:500px;
+            background:green;
+            opacity: 0.6;
+            filter:alpha(opacity=60);
+            font-size: 60px;
+            text-align: center;
+            line-height: 500px;
+            border-radius:10px;
+            border:10px solid #00f;
+            position: absolute;
+            color: red;
+        }
+        #big{
+            width:500px;
+            height: 500px;
+            transform-style: preserve-3d ;
+            margin:500px auto;
+            animation: rotate 2s linear infinite;
+
+        }*/
+        @keyframes rotate  {
+            from{
+            }
+            to{
+                transform: rotateY(-360deg);
+            }
+        }
+        .one{
+            transform: rotateY(180deg) translateZ( 100px);
+        }
+        .two{
+           transform: rotateX(90deg) translateZ(100px);
+        }
+        .three{
+            transform: rotateY(-90deg) translateZ(100px);
+        }
+        .four{
+            transform: rotateY(90deg) translateZ(100px);
+        }
+        .five{
+            transform: rotateX(-90deg) translateZ(100px);
+        }
+        .six{
+            transform: translateZ(100px);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <div class="cube one">1</div>
+        <div  class="cube two">2</div>
+        <div  class="cube three">3</div>
+        <div  class="cube four">4</div>
+        <div  class="cube five">5</div>
+        <div  class="cube six">6</div>
+    </div>
+    <!--<div id="big">
+        <div class="pic seven">7</div>
+        <div  class="pic eight">8</div>
+        <div  class="pic nine">9</div>
+        <div  class="pic ten">10</div>
+        <div  class="pic eleven">11</div>
+        <div  class="pic twelve">12</div>
+    </div>-->
+
+
+</body>
+</html>
