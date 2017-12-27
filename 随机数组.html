@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>title</title>
+</head>
+<body>
+<script type="text/javascript">
+    function getRandArr(maxVal, quantity, startTime, endTime) {
+                //最大view值，ID个数，开始时间，结束时间
+                function getRandom(s,e) {
+                    return Math.random()*(e-s)+s;
+                }
+                //随机时间
+                function getRandTime(startTime,endTime) {
+                    var start = new Date(startTime).getTime();
+                    var end = new Date(endTime).getTime();
+                    var RandTime = [];
+                    for (var a = 0; a <quantity; a++) {
+                        var Time = start + (end - start) / quantity * a;
+                        Time = new Date(Time);
+                        Time = Time.getFullYear()+"-"+(Time.getMonth()+1)+"-"+Time.getDate()+" "+Time.getHours()+":"+Time.getMinutes()+":"+Time.getSeconds();
+                        RandTime.push(Time);
+                    }
+                    return RandTime;
+
+                }
+                //随机生成ID
+                function generateUUID() {
+                    var d = new Date().getTime();
+                    var uuid = 'xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                        var r = (d + Math.random() * 16) % 16 | 0;
+                        d = Math.floor(d / 16);
+                        return (c == 'x' ? r : (r & 0x7 | 0x8)).toString(16);
+                    });
+                    return uuid;
+                }
+                var st = startTime;
+                var et = endTime;
+                var arrT = getRandTime(st,et);
+                var RandArr = [];
+                for(var i=0; i<quantity; i++){
+                    var obj = {
+                        id: generateUUID(),
+                        value: getRandom(1,maxVal).toFixed(2),
+                        date : arrT[i]
+                    };
+                    RandArr.push(obj);
+                }
+                return RandArr;
+            }
+    
+    function getDays(rnd) {
+        var arr = [];
+        var t = {};
+        var date;
+        rnd.forEach(function(obj){
+            date = new Date(obj.date).getYMD();
+            if(!t[date]){
+                t[date] = date;
+                arr.push(date);
+            }
+        });
+        return arr;
+
+    }
+    Date.prototype.getYMD = function(){
+        var retDate = this.getFullYear() + "-";  // 获取年份。
+        retDate += this.getMonth() + 1 + "-";    // 获取月份。
+        retDate += this.getDate();               // 获取日。
+        return retDate;                          // 返回日期。
+    };
+    String.prototype.getDate = function(){
+        var strArr = this.split('-');
+        var date = new Date(strArr[0], strArr[1] - 1, strArr[2]);
+        return date;
+    };
+   /* var getFirstDay = function(dataArr,timeArr) {
+        var arr = []; // 定义一个数组，用来存放符合条件的数据
+        var t = {}; // 定义一个对象
+        timeArr.forEach(function(obj){ // 遍历数组，这个数组是getDays生成的
+            var res = dataArr.find(function(item){ // 遍历数组，这个数组是原始数据
+                // indexOf函数是检查字符串里面包含指定对象不，不包含返回-1
+                return item.date.indexOf(obj) != -1; // 返回符合条件的数据
+            });
+            res.date = res.date.split(" ")[0];
+            arr.push(res); // 把数据放到数组里
+        });
+        return arr; // 返回数组
+    };*/
+    var getFirstHour = function(dataArr,timeArr) {
+        var arr = []; // 定义一个数组，用来存放符合条件的数据
+        var t = {}; // 定义一个对象
+        timeArr.forEach(function(obj){ // 遍历数组，这个数组是getDays生成的
+            var res = dataArr.find(function(item){ // 遍历数组，这个数组是原始数据
+                // indexOf函数是检查字符串里面包含指定对象不，不包含返回-1
+                return item.date.indexOf(obj) != -1; // 返回符合条件的数据
+            });
+            res.date = res.date.split(":")[0];
+            arr.push(res); // 把数据放到数组里
+        });
+        return arr; // 返回数组
+    };
+    var rnd = getRandArr (100, 50,' 2017-10-1,11:15:15', '2017-10-11,11:15:15');
+    var timeArr = getDays(rnd);
+    console.log(timeArr);
+    console.log(rnd);
+    console.log(getFirstHour(rnd,timeArr));
+   /* var arr = [];
+     for(var i in ret){
+         var find = rnd.find(function(elem){
+             return elem.date > i
+         });
+         arr.push(find);
+
+     }
+    console.log(arr);
+*/
+</script>
+</body>
+</html>
+
+
+
+
+
+
